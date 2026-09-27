@@ -1,0 +1,17 @@
+{
+  "districts": [
+    "Thane",
+    "Palghar",
+    "Raigarh",
+    "Nashik"
+  ],
+  "grid_cells": 2213,
+  "labeled_cells": 1493,
+  "accuracy": 1.0,
+  "weighted_f1": 1.0,
+  "classes": [
+    "High",
+    "Low",
+    "Moderate"
+  ]
+}

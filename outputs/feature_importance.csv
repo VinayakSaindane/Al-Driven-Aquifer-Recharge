@@ -1,0 +1,163 @@
+feature,importance
+categorical__geom_geom_l1__Structural Origin,0.20720077
+categorical__groundwater_prospect_Moderate,0.13654193
+remainder__slope_numeric,0.08471252
+remainder__recharge_structure_pct,0.07429362
+categorical__groundwater_prospect_High,0.039949417
+categorical__geom_geom_l3_Structural Lower Plateau,0.028967984
+categorical__lulc_lu_15_16_l1_Forest,0.023415389
+categorical__soil_texture_Unknown,0.0202632
+categorical__soil_erosion_Moderate to severe,0.01381253
+categorical__soil_depth_Unknown,0.012215939
+categorical__slope_zone_Unknown,0.0120386155
+categorical__groundwater_prospect_Low,0.01018849
+categorical__slope_zone_Storage,0.010172854
+categorical__lulc_lu_15_16_l2_Evergreen / Semi evergreen,0.010152947
+categorical__geom_geom_l5__Slightly dissected Structural Lower Plateau Moderate,0.009691707
+categorical__lulc_lu_15_16_l3_Rural,0.009665421
+categorical__slope_zone_Runoff,0.009656595
+categorical__lulc_lu_15_16_l3_Dense / Closed,0.008981106
+categorical__soil_texture_Waterbody Mask,0.008757512
+categorical__lulc_lu_15_16_l2_Swamp /Mangroves,0.008273609
+categorical__soil_drainage_Poorly drained,0.008220451
+categorical__lulc_lu_15_16_l3_Built Up -Compact (Continuous),0.008022428
+remainder__groundwater_score,0.0077101896
+"categorical__lithology_rock_type_Simple AA flows, Flow No. 15",0.0076180417
+categorical__lulc_lu_15_16_l2_Rural,0.0074499794
+remainder__drainage_density,0.006928559
+categorical__soil_drainage_Well drained,0.0067294645
+"categorical__lithology_rock_type_Simple AA flows, Flow No. 9",0.006627297
+categorical__geom_geom_l3_Eroded Plain,0.0060538384
+categorical__geom_geom_l5__Slightly dissected Structural Lower Plateau Shallow,0.00586539
+"categorical__lithology_rock_type_Compound Pahoehoe flows (Moderately to Highly Porphyritic), Flow No. 10",0.005845754
+categorical__lulc_lu_15_16_l2_Mining/Quarry,0.0058354964
+categorical__lulc_lu_15_16_l2_Industrial,0.0056988704
+categorical__soil_erosion_Slight to moderate,0.0056486544
+categorical__geom_geom_l5__Highly Dissected Structural Lower Plateau,0.0056146844
+categorical__soil_depth_Very deep (> 100 cm),0.005554455
+categorical__soil_drainage_Moderately well drained,0.005452807
+categorical__geom_geom_l1__Coastal Origin,0.0052855248
+categorical__groundwater_prospect_Unknown,0.0052682655
+categorical__soil_texture_Silty clay,0.0049876147
+categorical__lithology_rock_group_Unconsolidated Sediments,0.004974945
+categorical__soil_texture_Clay loam,0.004325711
+categorical__soil_erosion_Severe,0.0042259013
+categorical__soil_texture_Clayey,0.0041196425
+categorical__lulc_lu_15_16_l3_Vegetated / Open Area,0.0041100075
+categorical__lulc_lu_15_16_l1_Agricultural land,0.004107222
+categorical__lulc_lu_15_16_l3_Kharif,0.003918709
+"categorical__lulc_lu_15_16_l3_Lagoon, Creeks, mud flats etc.",0.003886389
+categorical__geom_geom_l3_Alluvial Plain,0.0038111745
+categorical__lulc_lu_15_16_l3_Dense / closed,0.0037277176
+remainder__lineament_density,0.003715977
+categorical__lithology_rock_type_Younger Alluvium,0.0036989998
+categorical__soil_depth_Shallow (10 to 25 cm),0.0036775137
+categorical__slope_zone_Upper Recharge,0.0036512672
+categorical__soil_texture_Gravelly clay,0.0036447449
+"categorical__lithology_rock_type_Compound Pahoehoe flows, Flow No. 5",0.0032594071
+categorical__lulc_lu_15_16_l2_Urban,0.003226837
+categorical__geom_geom_l1__Fluvial Origin,0.0031841756
+categorical__soil_depth_Habitation Mask,0.0031714214
+categorical__geom_geom_l5__Outer Fringe of Plateau Structural Lower Plateau,0.003111074
+"categorical__lithology_rock_type_Compound Pahoehoe flows (Sparsely Porphyritic), Flow No. 6",0.0030398557
+categorical__lulc_lu_15_16_l1_Wetlands,0.0029809864
+categorical__lulc_lu_15_16_l2_Tree Clad Area,0.0028994535
+"categorical__lithology_rock_type_Compound Pahoehoe flows (Sparsely Porphyritic), Flow No. 7",0.002833291
+"categorical__lithology_rock_type_Compound Pahoehoe flows (Non-porphyritic to Porphyritic), Flow No. 6",0.002820975
+categorical__soil_depth_Waterbody Mask,0.0026300692
+categorical__slope_zone_Lower Recharge,0.0026256263
+categorical__lulc_lu_15_16_l1_Wastelands,0.0026149722
+categorical__soil_texture_Gravelly sandy clay loam,0.0026145256
+categorical__lulc_lu_15_16_l2_Scrub land,0.0026008028
+categorical__lithology_rock_group_Deccan Traps & Intertrappeans,0.0025707707
+categorical__lulc_lu_15_16_l1_Built Up,0.0025064945
+categorical__lithology_rock_type_Agglomerate Tuff,0.0024412305
+categorical__soil_depth_Moderately deep (25 to 50 cm),0.0023272713
+categorical__geom_geom_l3_Younger Coastal Plain,0.0021916984
+categorical__lulc_lu_15_16_l3_Cropped in 2 seasons,0.0021684228
+categorical__lulc_lu_15_16_l3_Open,0.0020457578
+categorical__lulc_lu_15_16_l3_Built Up -Sparse (Discontinuous),0.0020329342
+categorical__lulc_lu_15_16_l2_Cropland,0.0019316131
+categorical__soil_texture_Habitation Mask,0.0018705729
+categorical__geom_geom_l5__Moderately Dissected  Structural Lower Plateau,0.001819713
+categorical__slope_zone_Not Considered,0.0017254472
+categorical__geom_geom_l5__Hill Slope,0.0014815145
+categorical__lulc_lu_15_16_l2_Fallow land,0.0014694793
+categorical__lithology_rock_type_Quartz Reef,0.000937821
+categorical__geom_geom_l5__Bench,0.00091736764
+categorical__lithology_rock_group_Intrusives,0.00053124403
+categorical__geom_geom_l5__Younger Alluvial plain Moderate,0.00045130492
+categorical__soil_erosion_None,0.0
+categorical__soil_erosion_Salt-pan,0.0
+categorical__soil_texture_Sandy,0.0
+categorical__soil_depth_Very shallow (< 10 cm),0.0
+categorical__soil_depth_Salt-pan,0.0
+categorical__soil_erosion_None to slight,0.0
+categorical__soil_erosion_Moderate,0.0
+categorical__soil_texture_Salt-pan,0.0
+categorical__soil_texture_Gravelly sandy loam,0.0
+categorical__soil_erosion_Habitation Mask,0.0
+categorical__soil_erosion_Slight,0.0
+categorical__geom_geom_l5__Mud Flat Younger,0.0
+categorical__geom_geom_l5__Inter Tidal Flat,0.0
+categorical__geom_geom_l5__Dyke / Sill Ridge,0.0
+categorical__geom_geom_l5__Eroded Plain,0.0
+categorical__geom_geom_l5__Mangrove swamp,0.0
+categorical__geom_geom_l5__Active Flood plain,0.0
+categorical__geom_geom_l5__Creek Network,0.0
+categorical__geom_geom_l3_Structural Middle Plateau,0.0
+categorical__geom_geom_l3_Unknown,0.0
+categorical__lithology_rock_type_Trachyte,0.0
+categorical__lithology_rock_type_Unknown,0.0
+categorical__geom_geom_l1__Unknown,0.0
+categorical__geom_geom_l3_Denudational Lower Plateau,0.0
+categorical__geom_geom_l3_Flood Plain,0.0
+categorical__geom_geom_l3_Salt Pan,0.0
+categorical__geom_geom_l1__Anthropogenic Origin,0.0
+categorical__geom_geom_l1__Denudational Origin,0.0
+categorical__soil_drainage_Waterbody Mask,0.0
+categorical__soil_soil_zone_ ,0.0
+categorical__soil_drainage_Unknown,0.0
+categorical__soil_drainage_Excessively drained,0.0
+categorical__soil_drainage_Salt-pan,0.0
+categorical__soil_drainage_Somewhat excessively drained,0.0
+"categorical__lithology_rock_type_Compound Pahoehoe flows (Sparsely Porphyritic), Flow No. 5",0.0
+"categorical__lithology_rock_type_Compound Pahoehoe flows (M1 Megacrysts, Sparsely to Moderately Porphyritic), Flow No. 6",0.0
+categorical__lithology_rock_group_Unknown,0.0
+categorical__lithology_rock_type_Basic Dyke,0.0
+"categorical__lithology_rock_type_Compound Pahoehoe flows (Sparsely to Moderately Porphyritic), Flow No. 7",0.0
+"categorical__lithology_rock_type_Compound Pahoehoe flows, Flow No. 7",0.0
+categorical__lithology_rock_type_Gabbro,0.0
+"categorical__lithology_rock_type_Simple AA flows (Moderately to Highly Porphyritic), Flow No. 12",0.0
+categorical__soil_erosion_Waterbody Mask,0.0
+categorical__soil_erosion_Unknown,0.0
+categorical__soil_drainage_Habitation Mask,0.0
+categorical__lithology_rock_group_Gneiss- Granitoid Complex,0.0
+categorical__soil_soil_zone_Unknown,0.0
+categorical__geom_geom_l3_Structural Upper Plateau,0.0
+categorical__geom_geom_l5__Undissected Structural Upper Plateau,0.0
+categorical__lulc_lu_15_16_l1_Water bodies,0.0
+categorical__geom_geom_l5__Undissected Structural Lower Plateau,0.0
+categorical__geom_geom_l5__Slightly Weathered Denudational Lower Plateau,0.0
+categorical__geom_geom_l5__Residual Mound,0.0
+categorical__geom_geom_l5__Salt Pan,0.0
+categorical__geom_geom_l5__Younger Alluvial plain,0.0
+categorical__geom_geom_l5__Unknown,0.0
+categorical__lulc_lu_15_16_l1_Unknown,0.0
+categorical__geom_geom_l5__Plateau Top,0.0
+categorical__lulc_lu_15_16_l2_River,0.0
+categorical__lulc_lu_15_16_l2_Reservoir / Tank,0.0
+categorical__lulc_lu_15_16_l2_Coastal,0.0
+categorical__lulc_lu_15_16_l2_Deciduous (Dry /Moist / Thorn),0.0
+categorical__lulc_lu_15_16_l2_Agriculture Plantation,0.0
+categorical__lulc_lu_15_16_l2_Unknown,0.0
+categorical__lulc_lu_15_16_l3_Agriculture Plantation,0.0
+categorical__lulc_lu_15_16_l3_Industrial area,0.0
+categorical__lulc_lu_15_16_l3_Perennial,0.0
+categorical__lulc_lu_15_16_l3_Non Perennial,0.0
+categorical__lulc_lu_15_16_l3_Fallow land,0.0
+categorical__lulc_lu_15_16_l3_Saltpans,0.0
+categorical__lulc_lu_15_16_l3_Permanent,0.0
+categorical__lulc_lu_15_16_l3_Unknown,0.0
+categorical__lulc_lu_15_16_l3_Quarry,0.0
+categorical__lulc_lu_15_16_l3_Rabi,0.0

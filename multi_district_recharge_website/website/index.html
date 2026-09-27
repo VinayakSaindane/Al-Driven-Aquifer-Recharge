@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AquaMap AI</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:#f5f7f6;color:#20322d}
+header{padding:18px 24px;background:#163b32;color:white} header h1{margin:0;font-size:23px} header p{margin:6px 0 0;opacity:.85}
+.layout{display:grid;grid-template-columns:320px 1fr;height:calc(100vh - 91px)}
+.sidebar{padding:18px;background:white;border-right:1px solid #ddd;overflow:auto}.sidebar label{font-weight:700;display:block;margin:14px 0 7px}
+select{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;background:white}.card{padding:13px;margin-top:14px;background:#f7faf8;border-radius:10px;border:1px solid #e0e8e4}.stat{display:flex;justify-content:space-between;margin:8px 0}.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:7px}.high{background:#1976d2}.moderate{background:#26c6da}.low{background:#8d5a2b}
+#map{height:100%;min-height:500px}.note{font-size:12px;color:#66736f;line-height:1.45;margin-top:14px}
+@media(max-width:800px){.layout{grid-template-columns:1fr;height:auto}.sidebar{border-right:0;border-bottom:1px solid #ddd}#map{height:70vh}}
+</style></head>
+<body>
+<header><h1>AquaMap AI</h1><p>AI-Driven Aquifer Recharge Potential Mapping Using GIS and XGBoost</p></header>
+<div class="layout"><aside class="sidebar">
+<label for="district">District</label><select id="district"><option value="ALL">All Districts</option><option>Thane</option><option>Palghar</option><option>Raigarh</option><option>Nashik</option></select>
+<label for="class">Recharge Potential</label><select id="class"><option value="ALL">All Classes</option><option>High</option><option>Moderate</option><option>Low</option></select>
+<div class="card"><b>Map Legend</b><div class="stat"><span><span class="dot high"></span>High</span></div><div class="stat"><span><span class="dot moderate"></span>Moderate</span></div><div class="stat"><span><span class="dot low"></span>Low</span></div></div>
+<div class="card"><b>Selected Area</b><div id="stats">Loading...</div></div>
+<p class="note">Click a grid cell to view district, predicted recharge class and model confidence. The map uses the 1 km grid generated from the project GIS layers.</p>
+</aside><main id="map"></main></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map=L.map('map').setView([19.2,73.0],9);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap contributors'}).addTo(map);
+let dataLayer;
+const districtSel=document.getElementById('district'); const classSel=document.getElementById('class');
+function color(c){return c==='High'?'#1976d2':c==='Moderate'?'#26c6da':'#8d5a2b'}
+function updateStats(features){let h=features.filter(f=>f.properties.predicted_recharge_priority==='High').length;let m=features.filter(f=>f.properties.predicted_recharge_priority==='Moderate').length;let l=features.filter(f=>f.properties.predicted_recharge_priority==='Low').length;document.getElementById('stats').innerHTML=`<div class="stat"><span>Cells</span><b>${features.length}</b></div><div class="stat"><span>High</span><b>${h}</b></div><div class="stat"><span>Moderate</span><b>${m}</b></div><div class="stat"><span>Low</span><b>${l}</b></div>`}
+function render(all){const d=districtSel.value,c=classSel.value;const fs=all.features.filter(f=>(d==='ALL'||f.properties.district===d)&&(c==='ALL'||f.properties.predicted_recharge_priority===c));if(dataLayer) dataLayer.remove();dataLayer=L.geoJSON({type:'FeatureCollection',features:fs},{style:f=>({color:'#ffffff',weight:.4,fillColor:color(f.properties.predicted_recharge_priority),fillOpacity:.72}),onEachFeature:(f,l)=>{const p=f.properties;l.bindPopup(`<b>${p.district}</b><br>Predicted: <b>${p.predicted_recharge_priority}</b><br>Confidence: ${(Number(p.prediction_confidence)*100).toFixed(1)}%<br>Cell: ${p.district_cell_id}`)}}).addTo(map);updateStats(fs);if(fs.length)dataLayer.bringToFront()}
+fetch('predictions.geojson').then(r=>r.json()).then(data=>{render(data);districtSel.onchange=()=>render(data);classSel.onchange=()=>render(data);}).catch(e=>{document.getElementById('stats').textContent='Could not load predictions.geojson. Run the website using a local server.';console.error(e)});
+</script></body></html>

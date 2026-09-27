@@ -1,0 +1,11 @@
+district,predicted_recharge_priority,cells
+Nashik,High,818
+Nashik,Low,95
+Palghar,High,173
+Palghar,Low,17
+Raigarh,High,264
+Raigarh,Low,92
+Raigarh,Moderate,1
+Thane,High,578
+Thane,Low,169
+Thane,Moderate,6

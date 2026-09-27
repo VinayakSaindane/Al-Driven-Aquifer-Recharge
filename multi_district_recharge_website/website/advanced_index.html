@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AquaMap AI - Advanced Spatial Decision Support System</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,sans-serif;background:#1e1e2e;color:#cdd6f4}
+header{padding:18px 24px;background:#11111b;color:#cdd6f4;border-bottom:1px solid #313244} 
+header h1{margin:0;font-size:24px;color:#89b4fa} header p{margin:6px 0 0;opacity:.85;font-size:14px}
+.layout{display:grid;grid-template-columns:350px 1fr;height:calc(100vh - 80px)}
+.sidebar{padding:18px;background:#181825;border-right:1px solid #313244;overflow:auto}
+.sidebar label{font-weight:700;display:block;margin:14px 0 7px;color:#bac2de;font-size:14px}
+select{width:100%;padding:10px;border:1px solid #45475a;border-radius:6px;background:#313244;color:#cdd6f4}
+.card{padding:15px;margin-top:14px;background:#313244;border-radius:8px;border:1px solid #45475a}
+.card h3{margin-top:0;font-size:16px;color:#89b4fa}
+.stat{display:flex;justify-content:space-between;margin:8px 0;font-size:14px}
+.stat-val{font-weight:bold;color:#a6e3a1}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:7px}
+.high{background:#89b4fa}.moderate{background:#f9e2af}.low{background:#f38ba8}
+#map{height:100%;min-height:500px}
+.note{font-size:12px;color:#a6adc8;line-height:1.45;margin-top:14px}
+.recommendation{color:#f38ba8;font-weight:bold;margin-top:10px;}
+@media(max-width:800px){.layout{grid-template-columns:1fr;height:auto}.sidebar{border-right:0;border-bottom:1px solid #ddd}#map{height:70vh}}
+</style>
+</head>
+<body>
+<header>
+    <h1>AquaMap AI</h1>
+    <p>AI-Driven Aquifer Recharge Decision Support System using XGBoost & SHAP</p>
+</header>
+<div class="layout">
+    <aside class="sidebar">
+        <label for="district">District</label>
+        <select id="district">
+            <option value="ALL">All Districts</option>
+            <option>Thane</option>
+            <option>Palghar</option>
+            <option>Raigarh</option>
+            <option>Nashik</option>
+        </select>
+
+        <label for="class">Recharge Potential</label>
+        <select id="class">
+            <option value="ALL">All Classes</option>
+            <option>High</option>
+            <option>Moderate</option>
+            <option>Low</option>
+        </select>
+
+        <div class="card">
+            <h3>Map Legend</h3>
+            <div class="stat"><span><span class="dot high"></span>High</span></div>
+            <div class="stat"><span><span class="dot moderate"></span>Moderate</span></div>
+            <div class="stat"><span><span class="dot low"></span>Low</span></div>
+        </div>
+
+        <div class="card" id="analysis-panel">
+            <h3>Selected Area Analysis</h3>
+            <div id="stats">Click a grid cell on the map to view detailed ML predictions, environmental factors, and engineering recommendations.</div>
+        </div>
+        
+        <p class="note"><b>Disclaimer:</b> Recommendations are preliminary planning suggestions requiring detailed hydrogeological investigation and engineering assessment.</p>
+    </aside>
+    <main id="map"></main>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map=L.map('map').setView([19.2,73.0],9);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:18,attribution:'© OpenStreetMap & CARTO'}).addTo(map);
+let dataLayer;
+const districtSel=document.getElementById('district'); 
+const classSel=document.getElementById('class');
+
+function color(c){return c==='High'?'#89b4fa':c==='Moderate'?'#f9e2af':'#f38ba8'}
+
+function renderAnalysis(p) {
+    const elNino = p.is_el_nino ? "Yes" : "No";
+    document.getElementById('stats').innerHTML = `
+        <div class="stat"><span>District:</span><span class="stat-val">${p.district}</span></div>
+        <div class="stat"><span>Prediction:</span><span class="stat-val" style="color:${color(p.predicted_recharge_priority)}">${p.predicted_recharge_priority}</span></div>
+        <div class="stat"><span>Confidence:</span><span class="stat-val">${(Number(p.prediction_confidence)*100).toFixed(1)}%</span></div>
+        <hr style="border:0;border-top:1px solid #45475a;margin:10px 0;">
+        <div class="stat"><span>Rainfall:</span><span class="stat-val">${Number(p.annual_rainfall).toFixed(0)} mm</span></div>
+        <div class="stat"><span>El Niño Year:</span><span class="stat-val">${elNino}</span></div>
+        <div class="stat"><span>Slope:</span><span class="stat-val">${Number(p.slope_numeric).toFixed(1)}%</span></div>
+        <div class="stat"><span>Soil:</span><span class="stat-val">${p.soil}</span></div>
+        <hr style="border:0;border-top:1px solid #45475a;margin:10px 0;">
+        <div style="font-weight:bold;margin-bottom:5px;color:#bac2de;">AI Recommendation:</div>
+        <div style="font-size:13px;line-height:1.4;color:#a6e3a1;">${p.recommendations}</div>
+    `;
+}
+
+function render(all){
+    const d=districtSel.value,c=classSel.value;
+    const fs=all.features.filter(f=>(d==='ALL'||f.properties.district===d)&&(c==='ALL'||f.properties.predicted_recharge_priority===c));
+    if(dataLayer) dataLayer.remove();
+    dataLayer=L.geoJSON({type:'FeatureCollection',features:fs},{
+        style:f=>({color:'#1e1e2e',weight:.5,fillColor:color(f.properties.predicted_recharge_priority),fillOpacity:.65}),
+        onEachFeature:(f,l)=>{
+            l.on('click', () => {
+                renderAnalysis(f.properties);
+                l.bringToFront();
+            });
+        }
+    }).addTo(map);
+    if(fs.length)dataLayer.bringToFront();
+}
+
+fetch('../../outputs/advanced_predictions.geojson').then(r=>r.json()).then(data=>{
+    render(data);
+    districtSel.onchange=()=>render(data);
+    classSel.onchange=()=>render(data);
+}).catch(e=>{
+    document.getElementById('stats').textContent='Could not load advanced_predictions.geojson.';
+    console.error(e);
+});
+</script>
+</body>
+</html>
